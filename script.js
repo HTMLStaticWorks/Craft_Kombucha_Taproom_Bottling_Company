@@ -9,6 +9,27 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("kova-theme", next);
 });
 
+// RTL Direction Toggle & Persistence
+const savedDir = localStorage.getItem("kova-dir");
+const rtlButton = document.querySelector(".rtl-toggle");
+const rtlLabel = document.querySelector(".rtl-label");
+
+if (savedDir) {
+  root.setAttribute("dir", savedDir);
+  if (rtlLabel) rtlLabel.textContent = savedDir === "rtl" ? "LTR" : "RTL";
+}
+
+if (rtlButton) {
+  rtlButton.addEventListener("click", () => {
+    const currentDir = root.getAttribute("dir") === "rtl" ? "rtl" : "ltr";
+    const nextDir = currentDir === "rtl" ? "ltr" : "rtl";
+    root.setAttribute("dir", nextDir);
+    localStorage.setItem("kova-dir", nextDir);
+    if (rtlLabel) rtlLabel.textContent = nextDir === "rtl" ? "LTR" : "RTL";
+    updateActiveMenu();
+  });
+}
+
 const menuButton = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 menuButton.addEventListener("click", () => {
