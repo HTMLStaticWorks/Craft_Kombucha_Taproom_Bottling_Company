@@ -95,3 +95,24 @@ function updateActiveMenu() {
 window.addEventListener("scroll", updateActiveMenu, { passive: true });
 window.addEventListener("load", updateActiveMenu);
 window.addEventListener("resize", updateActiveMenu);
+
+// Floating Back to Top Button Handler (Shows after scrolling ~200px into home section)
+const backToTopBtn = document.getElementById("floating-back-to-top");
+if (backToTopBtn) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (window.scrollY > 200) {
+        backToTopBtn.classList.add("visible");
+      } else {
+        backToTopBtn.classList.remove("visible");
+      }
+    },
+    { passive: true }
+  );
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
