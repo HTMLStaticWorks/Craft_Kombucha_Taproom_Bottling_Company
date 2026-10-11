@@ -2185,14 +2185,25 @@ html[data-theme="dark"] .map-pattern {
   }
   .mobile-menu nav a {
     font-family: var(--serif);
-    font-size: 26px;
-    padding: 8px 0;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: .01em;
+    padding: 10px 0;
     border-bottom: 1px solid var(--line);
     color: var(--ink);
+    display: flex;
+    align-items: center;
+    transition: color .2s ease, padding-left .2s ease;
+  }
+  .mobile-menu nav a:hover {
+    color: var(--accent);
+    transform: none;
+    padding-left: 6px;
   }
   .mobile-menu a.active {
     color: var(--accent);
-    font-weight: 800;
+    font-weight: 700;
     padding-left: 10px;
     border-left: 3px solid var(--accent);
   }
@@ -2444,6 +2455,11 @@ html[data-theme="dark"] .map-pattern {
   border-right: 3px solid var(--accent);
 }
 
+[dir="rtl"] .mobile-menu nav a:hover {
+  padding-left: 0;
+  padding-right: 6px;
+}
+
 [dir="rtl"] .button span,
 [dir="rtl"] .text-link span,
 [dir="rtl"] .header-cta span,
@@ -2584,11 +2600,12 @@ html[data-theme="dark"] .map-pattern {
 
 .hero.section .hero-visual,
 #home.hero .hero-visual {
-  min-height: 360px;
-  max-height: 430px;
+  min-height: 400px;
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -2700,10 +2717,10 @@ html[data-theme="dark"] .map-pattern {
 #home.hero .hero-sticker {
   position: absolute;
   z-index: 3;
-  right: 4%;
-  bottom: 8%;
-  width: 100px;
-  height: 100px;
+  left: calc(50% + 18px);
+  bottom: 45px;
+  width: 96px;
+  height: 96px;
   border: 2px solid var(--ink);
   border-radius: 50%;
   display: flex;
@@ -2747,13 +2764,21 @@ html[data-theme="dark"] .map-pattern {
 
 .hero.section .hero-caption,
 #home.hero .hero-caption {
-  position: absolute;
-  bottom: 2%;
-  left: 6%;
-  font-size: 9px;
+  position: relative;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  margin-top: 14px;
+  margin-bottom: 0;
+  font-size: 10px;
   letter-spacing: .16em;
   font-weight: 800;
   color: var(--muted);
+  text-align: center;
+  z-index: 5;
+  width: 100%;
+  text-transform: uppercase;
+  display: block;
 }
 
 .hero.section .ticker,
@@ -3090,50 +3115,148 @@ html[data-theme="dark"] .map-pattern {
 }
 
 .flavour-card {
-  min-height: 420px;
-  border-radius: 24px;
-  padding: 18px;
+  min-height: 430px;
+  border-radius: 26px;
+  padding: 26px 22px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  text-align: center;
   overflow: hidden;
   position: relative;
-  transition: transform .3s, box-shadow .3s;
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, .08);
+  transition: transform .35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .35s ease;
 }
 
 .flavour-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, .14);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 36px -8px rgba(0, 0, 0, .18);
 }
 
-.card-ginger { background: #e4a64e; }
-.card-berry { background: #9c5b6c; }
-.card-hibiscus { background: #e4b7a5; }
-.card-mango { background: #a9ad60; }
+.card-ginger {
+  background: radial-gradient(circle at 50% 46%, rgba(255, 255, 255, .32) 0%, rgba(255, 255, 255, 0) 65%), #e4a64e;
+}
+.card-berry {
+  background: radial-gradient(circle at 50% 46%, rgba(255, 255, 255, .24) 0%, rgba(255, 255, 255, 0) 65%), #9c5b6c;
+}
+.card-hibiscus {
+  background: radial-gradient(circle at 50% 46%, rgba(255, 255, 255, .34) 0%, rgba(255, 255, 255, 0) 65%), #e4b7a5;
+}
+.card-mango {
+  background: radial-gradient(circle at 50% 46%, rgba(255, 255, 255, .26) 0%, rgba(255, 255, 255, 0) 65%), #a9ad60;
+}
 
 .card-top {
   display: flex;
   justify-content: space-between;
-  font-size: 9.5px;
+  align-items: center;
+  width: 100%;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: .13em;
+  letter-spacing: .15em;
   color: #173a32;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.card-top span:last-child {
+  background: rgba(23, 58, 50, .09);
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+
+.flavour-card .can {
+  align-self: center;
+  margin: 18px auto 14px;
+  width: 122px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 18px 18px 14px 14px;
+  border: 1.5px solid rgba(255, 255, 255, .65);
+  box-shadow: inset -10px 0 14px rgba(0, 0, 0, .2), inset 6px 0 10px rgba(255, 255, 255, .25), 0 20px 30px -8px rgba(0, 0, 0, .26);
+  padding: 14px 10px;
+  text-align: center;
+  color: #fff;
+  transform: rotate(-3deg);
+  transform-origin: center center;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.flavour-card:hover .can {
+  transform: rotate(0deg) scale(1.05) translateY(-4px);
+  box-shadow: inset -10px 0 14px rgba(0, 0, 0, .2), inset 6px 0 10px rgba(255, 255, 255, .3), 0 26px 36px -6px rgba(0, 0, 0, .32);
+}
+
+.flavour-card .can span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, .6);
+  padding-bottom: 4px;
+  width: 100%;
+  display: block;
+}
+
+.flavour-card .can b {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.08;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: auto 0;
+  letter-spacing: .02em;
+}
+
+.flavour-card .can small {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255, 255, 255, .6);
+  border-bottom: none;
+  padding-top: 4px;
+  padding-bottom: 0;
+  width: 100%;
+  display: block;
+}
+
+.flavour-card > div:last-child {
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
 
 .flavour-card h3 {
   font-family: var(--serif);
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 400;
-  margin: 0;
+  margin: 0 0 5px;
+  line-height: 1.15;
+  color: #173a32;
+  text-align: center;
 }
 
 .flavour-card p {
-  margin: 2px 0 0;
+  margin: 0;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: .08em;
+  letter-spacing: .13em;
   text-transform: uppercase;
   color: #173a32;
+  opacity: .88;
+  text-align: center;
 }
 
 .flavour-notes {
@@ -3526,6 +3649,181 @@ html[data-theme="dark"] .wholesale {
   padding-inline: var(--page-gutter);
 }
 
+/* Compact & Short Contact Section */
+.contact-compact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(24px, 3.5vw, 42px);
+  align-items: stretch;
+  margin-top: 10px;
+}
+
+.contact-info-card,
+.contact-form-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.05);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.contact-info-card:hover,
+.contact-form-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(23, 58, 50, 0.06);
+  padding: 6px 12px;
+  border-radius: 99px;
+  align-self: flex-start;
+  margin-bottom: 16px;
+}
+
+[data-theme="dark"] .contact-status-chip {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--accent);
+}
+
+.contact-channels-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.contact-channels-pills span {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.contact-quick-list {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.contact-quick-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.contact-quick-item .cq-icon {
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-quick-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-quick-item strong {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.contact-quick-item a,
+.contact-quick-item span {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  transition: color .2s;
+}
+
+.contact-quick-item a:hover {
+  color: var(--accent);
+}
+
+.contact-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.contact-form-card .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.contact-form-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.contact-form-card input,
+.contact-form-card select,
+.contact-form-card textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-family: inherit;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+
+.contact-form-card input:focus,
+.contact-form-card select:focus,
+.contact-form-card textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(189, 122, 44, 0.15);
+}
+
+.contact-form-card button[type="submit"] {
+  margin-top: 4px;
+  width: 100%;
+  justify-content: center;
+}
+
 .contact-channels {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3712,3 +4010,581 @@ html[data-theme="dark"] .wholesale {
 .contact-form.submitted .form-success { display: block; }
 .rtl-label { display: inline-block; font-size: 11px; font-weight: 800; }
 .flavours { background: var(--bg); }
+
+/* ==========================================================================
+   Home 2 & Features Responsive Optimizations
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero.section .hero-main,
+  #home.hero .hero-main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: left;
+  }
+  .flavour-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .flavour-card {
+    min-height: 440px;
+    padding: 28px 24px 26px;
+    align-items: center;
+    text-align: center;
+  }
+  .flavour-card .can {
+    width: 126px;
+    height: 248px;
+    margin: 18px auto 16px;
+  }
+  .flavour-card h3 {
+    font-size: 28px;
+  }
+  .flavour-card p {
+    font-size: 11.5px;
+  }
+  .flavour-card > div:last-child {
+    text-align: center;
+    width: 100%;
+  }
+  .flavour-notes,
+  .taproom-features,
+  .wholesale-services,
+  .contact-channels {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .home-features,
+  .hero.section .home-features,
+  #home.hero .home-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-gutter: 20px;
+  }
+  .hero.section,
+  #home.hero {
+    padding: 24px 18px 40px !important;
+    gap: 28px !important;
+  }
+  .hero.section .hero-main,
+  #home.hero .hero-main {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .hero.section .hero-copy h1,
+  #home.hero .hero-copy h1 {
+    font-size: clamp(34px, 8vw, 48px);
+    margin-bottom: 16px;
+  }
+  .hero.section .hero-text,
+  #home.hero .hero-text {
+    font-size: 15.5px;
+    margin-bottom: 22px;
+  }
+  .hero.section .hero-visual,
+  #home.hero .hero-visual {
+    min-height: 380px;
+    max-height: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 12px;
+  }
+  .hero.section .hero-bottle,
+  #home.hero .hero-bottle {
+    transform: rotate(6deg) scale(0.92);
+    transform-origin: center center;
+  }
+  .hero.section .hero-sticker,
+  #home.hero .hero-sticker {
+    width: 86px;
+    height: 86px;
+    left: calc(50% + 16px);
+    bottom: 42px;
+  }
+  .hero.section .hero-caption,
+  #home.hero .hero-caption {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    z-index: 5;
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 10px;
+    letter-spacing: .16em;
+    font-weight: 800;
+    color: var(--muted);
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+  .hero-orb {
+    width: min(60vw, 240px);
+  }
+  .home-features,
+  .hero.section .home-features,
+  #home.hero .home-features {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .home-card,
+  .hero.section .home-card,
+  #home.hero .home-card {
+    padding: 18px 18px;
+    border-radius: 16px;
+  }
+  .home-card h3,
+  .hero.section .home-card h3,
+  #home.hero .home-card h3 {
+    font-size: 19px;
+  }
+  .story,
+  .taproom,
+  .wholesale,
+  .contact {
+    padding-inline: 18px !important;
+    padding-block: 44px !important;
+  }
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .story-image {
+    min-height: 260px;
+    height: 260px;
+    width: 100%;
+    border-radius: 60px 0 60px 0;
+  }
+  .image-note {
+    right: 12px;
+    bottom: 12px;
+    padding: 12px 16px;
+    font-size: 9.5px;
+  }
+  .story-pillars {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .brew {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .brew-visual {
+    min-height: 280px;
+    height: 280px;
+    width: 100%;
+    border-radius: 0 60px 0 60px;
+  }
+  .brew-badge {
+    width: 85px;
+    height: 85px;
+    font-size: 15px;
+    left: 14px;
+    bottom: 14px;
+  }
+  .process {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .process i {
+    display: none;
+  }
+  .flavour-head,
+  .contact-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .flavour-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .flavour-card {
+    min-height: 410px;
+    padding: 24px 20px 22px;
+    border-radius: 24px;
+    align-items: center;
+    text-align: center;
+  }
+  .flavour-card .can {
+    width: 118px;
+    height: 232px;
+    margin: 16px auto 14px;
+  }
+  .flavour-card h3 {
+    font-size: 25px;
+  }
+  .flavour-card p {
+    font-size: 11px;
+  }
+  .flavour-card > div:last-child {
+    text-align: center;
+    width: 100%;
+  }
+  .flavour-notes {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .taproom-main-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .taproom-visual {
+    min-height: 300px;
+    border-radius: 60px 0 60px 0;
+  }
+  .taproom-visual:before {
+    border-radius: 50px 0 50px 0;
+    inset: 12px;
+  }
+  .tap-card {
+    width: 90%;
+    max-width: 330px;
+    padding: 22px 18px;
+  }
+  .taproom-features {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 12px;
+  }
+  .gallery-photo {
+    min-height: 180px;
+    height: 180px;
+    width: 100%;
+    border-radius: 16px !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+  .wholesale {
+    min-height: auto;
+  }
+  .wholesale-pattern {
+    display: none;
+  }
+  .wholesale h2 {
+    font-size: clamp(34px, 8vw, 48px);
+  }
+  .wholesale-services {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 24px;
+    margin-bottom: 22px;
+  }
+  .contact-compact-grid,
+  .contact-main-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .contact-info-card,
+  .contact-form-card {
+    padding: 24px 20px;
+  }
+  .newsletter {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 36px;
+    padding-top: 28px;
+  }
+  .newsletter-socials {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .flavour-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .flavour-card {
+    min-height: 390px;
+    padding: 24px 20px 22px;
+    border-radius: 24px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .flavour-card .can {
+    width: 120px;
+    height: 236px;
+    margin: 16px auto 14px;
+  }
+  .flavour-card h3 {
+    font-size: 26px;
+  }
+  .flavour-card p {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-gutter: 14px;
+  }
+  .hero.section,
+  #home.hero {
+    padding: 18px 14px 32px !important;
+    gap: 22px !important;
+  }
+  .hero.section .hero-copy h1,
+  #home.hero .hero-copy h1 {
+    font-size: 34px;
+    line-height: 1.05;
+  }
+  .hero.section .hero-text,
+  #home.hero .hero-text {
+    font-size: 14.5px;
+    margin-bottom: 18px;
+  }
+  .hero.section .hero-buttons,
+  #home.hero .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .hero.section .hero-buttons .button,
+  #home.hero .hero-buttons .button {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero.section .hero-visual,
+  #home.hero .hero-visual {
+    min-height: 340px;
+    max-height: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+  .hero.section .hero-bottle,
+  #home.hero .hero-bottle {
+    transform: rotate(5deg) scale(0.88);
+    transform-origin: center center;
+  }
+  .hero.section .hero-sticker,
+  #home.hero .hero-sticker {
+    width: 78px;
+    height: 78px;
+    left: calc(50% + 12px);
+    bottom: 38px;
+  }
+  .hero.section .sticker-percent,
+  #home.hero .sticker-percent {
+    font-size: 18px;
+  }
+  .hero.section .sticker-text,
+  #home.hero .sticker-text {
+    font-size: 8px;
+  }
+  .hero.section .hero-caption,
+  #home.hero .hero-caption {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    z-index: 5;
+    margin-top: 12px;
+    margin-bottom: 0;
+    font-size: 9.5px;
+    letter-spacing: .16em;
+    font-weight: 800;
+    color: var(--muted);
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+  .home-features,
+  .hero.section .home-features,
+  #home.hero .home-features {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .home-card,
+  .hero.section .home-card,
+  #home.hero .home-card {
+    padding: 16px 15px;
+    border-radius: 14px;
+  }
+  .home-card .card-num,
+  .hero.section .home-card .card-num,
+  #home.hero .home-card .card-num {
+    font-size: 9.5px;
+    letter-spacing: .12em;
+    margin-bottom: 6px;
+  }
+  .home-card h3,
+  .hero.section .home-card h3,
+  #home.hero .home-card h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .home-card p,
+  .hero.section .home-card p,
+  #home.hero .home-card p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .story,
+  .taproom,
+  .wholesale,
+  .contact {
+    padding-inline: 14px !important;
+    padding-block: 36px !important;
+  }
+  .story-image {
+    min-height: 220px;
+    height: 220px;
+    border-radius: 40px 0 40px 0;
+  }
+  .story-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .story-stats strong {
+    font-size: 22px;
+  }
+  .story-stats span {
+    font-size: 9px;
+  }
+  .story-pillar-card,
+  .flavour-note-card,
+  .taproom-feature-card,
+  .wholesale-service-card,
+  .contact-channel-card {
+    padding: 16px 15px;
+    border-radius: 14px;
+  }
+  .story-pillar-card h3,
+  .flavour-note-card h3,
+  .taproom-feature-card h3,
+  .wholesale-service-card h3,
+  .contact-channel-card h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .story-pillar-card p,
+  .flavour-note-card p,
+  .taproom-feature-card p,
+  .wholesale-service-card p,
+  .contact-channel-card p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .brew-visual {
+    min-height: 240px;
+    height: 240px;
+    border-radius: 0 40px 0 40px;
+  }
+  .brew-badge {
+    width: 75px;
+    height: 75px;
+    font-size: 13px;
+  }
+  .process {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 12px 10px;
+  }
+  .process b {
+    font-size: 20px;
+  }
+  .process span {
+    font-size: 8px;
+  }
+  .flavour-grid {
+    gap: 16px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .flavour-card {
+    min-height: 365px;
+    padding: 22px 18px 20px;
+    border-radius: 22px;
+    align-items: center;
+    text-align: center;
+  }
+  .flavour-card .can {
+    width: 114px;
+    height: 222px;
+    margin: 14px auto 12px;
+  }
+  .flavour-card h3 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .flavour-card p {
+    font-size: 10.5px;
+    text-align: center;
+  }
+  .taproom-visual {
+    min-height: 280px;
+    border-radius: 40px 0 40px 0;
+  }
+  .tap-card {
+    width: 95%;
+    padding: 18px 14px;
+  }
+  .tap-card h3 {
+    font-size: 24px;
+  }
+  .gallery-photo {
+    min-height: 160px;
+    height: 160px;
+  }
+  .wholesale h2 {
+    font-size: 32px;
+  }
+  .contact-compact-grid {
+    gap: 16px;
+  }
+  .contact-info-card,
+  .contact-form-card {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+  .contact-form-card .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .contact-form {
+    padding: 0;
+    border-radius: 0;
+  }
+  .mobile-menu nav a {
+    font-size: 15.5px;
+    padding: 8.5px 0;
+  }
+}
+
