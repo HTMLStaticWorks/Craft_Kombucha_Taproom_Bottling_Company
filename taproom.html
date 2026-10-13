@@ -11,6 +11,218 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Equal Circular Badge Shape for Theme and RTL Toggles */
+    .site-header .theme-toggle,
+    .site-header .rtl-toggle {
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
+      max-width: 38px !important;
+      aspect-ratio: 1 / 1 !important;
+      border: 1.5px solid var(--line) !important;
+      border-radius: 50% !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+      flex: 0 0 38px !important;
+      flex-shrink: 0 !important;
+    }
+    .rtl-label {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 1;
+      text-align: center;
+    }
+
+    /* Header Responsiveness: Tablet & Mobile (300px - 1100px) */
+    @media (max-width: 1100px) {
+      .site-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-inline: clamp(16px, 4vw, 36px) !important;
+        box-sizing: border-box !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 50 !important;
+      }
+      .site-header .brand {
+        display: inline-flex !important;
+        align-items: center !important;
+        flex: 0 0 auto !important;
+        margin-right: auto !important;
+        margin-left: 0 !important;
+      }
+      .site-header .desktop-nav,
+      .site-header .header-cta {
+        display: none !important;
+      }
+      .site-header .header-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        margin-left: auto !important;
+        margin-right: 0 !important;
+        gap: 8px !important;
+        flex: 0 0 auto !important;
+      }
+      .site-header .menu-toggle {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+        cursor: pointer !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        max-width: 38px !important;
+        aspect-ratio: 1 / 1 !important;
+        border: 1.5px solid var(--line) !important;
+        border-radius: 50% !important;
+        background: transparent !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        flex: 0 0 38px !important;
+        flex-shrink: 0 !important;
+        gap: 4.5px !important;
+        transition: transform .2s, border-color .2s;
+      }
+
+      .site-header .menu-toggle:hover {
+        border-color: var(--accent) !important;
+        transform: scale(1.05);
+      }
+
+      .site-header .menu-toggle span {
+        width: 18px !important;
+        height: 2px !important;
+        min-height: 2px !important;
+        background-color: var(--ink) !important;
+        display: block !important;
+        border-radius: 2px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+        transition: transform .25s ease, opacity .25s ease, background-color .2s ease;
+      }
+
+      .site-header .menu-toggle:hover span {
+        background-color: var(--accent) !important;
+      }
+
+      .site-header .menu-toggle[aria-expanded="true"] {
+        border-color: var(--accent) !important;
+      }
+
+      .site-header .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+
+      .site-header .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .site-header .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+      .mobile-menu {
+        position: absolute;
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        left: 0;
+        right: 0;
+        top: 76px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        padding: 20px 18px 24px;
+        transition: .22s ease;
+        font-family: var(--sans);
+        z-index: 49;
+      }
+      .mobile-menu.open {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+      }
+      [dir="rtl"] .site-header .brand {
+        margin-left: auto !important;
+        margin-right: 0 !important;
+      }
+      [dir="rtl"] .site-header .header-actions {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        justify-content: flex-start !important;
+      }
+    }
+    @media (max-width: 760px) {
+      .site-header {
+        height: 68px !important;
+        padding-inline: 18px !important;
+      }
+      .mobile-menu {
+        top: 68px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .site-header {
+        padding-inline: 12px !important;
+      }
+      .site-header .theme-toggle,
+      .site-header .rtl-toggle,
+      .site-header .menu-toggle {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        max-width: 34px !important;
+        aspect-ratio: 1 / 1 !important;
+        border-radius: 50% !important;
+        flex: 0 0 34px !important;
+        font-size: 8.5px !important;
+      }
+      .site-header .menu-toggle span {
+        width: 15px !important;
+      }
+      .site-header .header-actions {
+        gap: 5px !important;
+      }
+    }
+
+    /* Gallery Section & Strict Left-Aligned Heading */
+    .gallery-wrapper {
+      width: 100% !important;
+      margin-top: clamp(10px, 3vw, 24px);
+    }
+    .gallery-head {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      text-align: left !important;
+      gap: 6px !important;
+      margin-bottom: 26px !important;
+      width: 100% !important;
+    }
+    .gallery-head .eyebrow {
+      text-align: left !important;
+      align-self: flex-start !important;
+      margin: 0 !important;
+    }
+    .gallery-head h2 {
+      text-align: left !important;
+      align-self: flex-start !important;
+      margin: 0 !important;
+    }
+  </style>
   <script src="js/script.js" defer></script>
 </head>
 <body id="top">
@@ -159,6 +371,21 @@
             <h3>Good company</h3>
             <p>A welcoming neighbourhood space for curious drinkers and regulars.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad taproom-gallery-section" aria-label="Around KOVA gallery">
+      <div class="container gallery-wrapper">
+        <div class="gallery-head">
+          <p class="eyebrow">04 · AROUND KOVA</p>
+          <h2>Good things are<br><em>better shared.</em></h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-photo g1"></div>
+          <div class="gallery-photo g2"></div>
+          <div class="gallery-photo g3"></div>
+          <div class="gallery-photo g4"></div>
         </div>
       </div>
     </section>
